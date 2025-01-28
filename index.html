@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Someone Special 🌹</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <div class="container">
+        <h1>For Ably Mae D. Garcia 💝</h1>
+        
+        <select class="mood-selector" onchange="updateMessage(this.value)">
+            <option value="sweet">Sweet Message</option>
+            <option value="nurse">After Duty Message</option>
+            <option value="motivation">Motivation Message</option>
+        </select>
+
+        <div class="flower-container">
+            <span class="flower" onclick="addHeart('❤️')">🌹</span>
+            <span class="flower" onclick="addHeart('💛')">🌻</span>
+            <span class="flower" onclick="addHeart('💙')">🌸</span>
+        </div>
+
+        <div class="envelope-container" onclick="toggleEnvelope()">
+            <div class="envelope">
+                <div class="envelope-front">
+                    ✉️
+                </div>
+                <div class="envelope-back">
+                    <div class="message"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="game-container">
+            <div class="game-stats">
+                Hearts Collected: <span id="hearts-collected">0</span> / 5
+            </div>
+            <div class="instruction">Click the floating hearts!</div>
+            <div id="game-area"></div>
+            <button class="restart-button" onclick="initGame()">Start New Game</button>
+        </div>
+    </div>
+
+    <div class="congratulations">
+        <h2>Congratulations! 🎉</h2>
+        <p class="congrats-message"></p>
+        <button class="restart-button" onclick="hideCongratulations()">Play Again</button>
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
