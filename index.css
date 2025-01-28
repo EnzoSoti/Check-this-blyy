@@ -2,29 +2,71 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+    font-family: 'Comic Sans MS', 'Segoe UI', Arial, sans-serif;
 }
 
 body {
     min-height: 100vh;
-    background: linear-gradient(135deg, #ffefef, #fff5e6);
+    background-image: url('https://img.freepik.com/free-vector/hand-painted-watercolor-pastel-sky-background_23-2148902771.jpg');
+    background-size: cover;
+    background-attachment: fixed;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 2rem;
+    position: relative;
+}
+
+/* Floating hearts background animation */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle, rgba(255,182,193,0.3) 10%, transparent 10%),
+        radial-gradient(circle, rgba(255,192,203,0.2) 15%, transparent 15%);
+    background-size: 40px 40px;
+    animation: heartBg 30s linear infinite;
+    z-index: -1;
 }
 
 .container {
     max-width: 800px;
     width: 100%;
     text-align: center;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 2rem;
+    border-radius: 20px;
+    box-shadow: 0 0 20px rgba(255, 182, 193, 0.5);
+    border: 3px solid #ffb6c1;
 }
 
 h1 {
-    color: #ff4d6d;
+    color: #ff1493;
     margin-bottom: 2rem;
     font-size: 2.5rem;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+    text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+    font-family: 'Comic Sans MS', cursive;
+    position: relative;
+}
+
+h1::before, h1::after {
+    content: '💝';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+}
+
+h1::before {
+    left: -40px;
+}
+
+h1::after {
+    right: -40px;
 }
 
 .flower-container {
@@ -33,16 +75,32 @@ h1 {
     flex-wrap: wrap;
     gap: 2rem;
     margin-bottom: 2rem;
+    position: relative;
 }
 
 .flower {
     font-size: 5rem;
     cursor: pointer;
-    transition: transform 0.3s;
+    transition: all 0.3s;
+    position: relative;
 }
 
 .flower:hover {
-    transform: scale(1.2);
+    transform: scale(1.2) rotate(15deg);
+}
+
+.flower::after {
+    content: '💕';
+    position: absolute;
+    font-size: 2rem;
+    top: -10px;
+    right: -10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.flower:hover::after {
+    opacity: 1;
 }
 
 .envelope-container {
@@ -75,51 +133,97 @@ h1 {
     align-items: center;
     justify-content: center;
     border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    box-shadow: 0 5px 15px rgba(255, 105, 180, 0.3);
 }
 
 .envelope-front {
-    background: #ff879d;
+    background: linear-gradient(135deg, #ff69b4, #ffb6c1);
     font-size: 5rem;
+    border: 3px solid #fff;
 }
 
 .envelope-back {
-    background: white;
+    background: linear-gradient(135deg, #fff5f7, #ffe4e1);
     transform: rotateX(180deg);
     padding: 1.5rem;
+    border: 3px solid #ffb6c1;
 }
 
 .message {
     font-size: 1.2rem;
-    color: #ff4d6d;
+    color: #ff1493;
     line-height: 1.5;
     text-align: center;
+    font-family: 'Comic Sans MS', cursive;
 }
 
-/* Simple Heart Collection Game Styles */
+.mood-selector {
+    margin: 1rem 0;
+    padding: 0.8rem;
+    border-radius: 20px;
+    border: 2px solid #ff69b4;
+    background: #fff5f7;
+    color: #ff1493;
+    cursor: pointer;
+    font-size: 1rem;
+    font-family: 'Comic Sans MS', cursive;
+    box-shadow: 0 3px 10px rgba(255, 105, 180, 0.2);
+}
+
+.mood-selector:hover {
+    background: #ffebf3;
+    transform: scale(1.05);
+}
+
 .game-container {
     max-width: 600px;
     margin: 2rem auto;
     text-align: center;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 2rem;
+    border-radius: 20px;
+    border: 3px solid #ffb6c1;
 }
 
 .heart-target {
     font-size: 4rem;
     cursor: pointer;
-    transition: transform 0.3s;
+    transition: all 0.3s;
     display: inline-block;
     margin: 1rem;
-    animation: float 2s ease-in-out infinite;
+    animation: float 3s ease-in-out infinite;
+    filter: drop-shadow(0 3px 5px rgba(255, 105, 180, 0.3));
 }
 
 .heart-target:hover {
-    transform: scale(1.2);
+    transform: scale(1.2) rotate(15deg);
 }
 
 .game-stats {
     margin: 1rem 0;
-    font-size: 1.2rem;
-    color: #ff4d6d;
+    font-size: 1.3rem;
+    color: #ff1493;
+    font-family: 'Comic Sans MS', cursive;
+    text-shadow: 1px 1px 2px rgba(255, 105, 180, 0.3);
+}
+
+.restart-button {
+    padding: 0.8rem 1.5rem;
+    background: linear-gradient(135deg, #ff69b4, #ff1493);
+    color: white;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    margin-top: 1rem;
+    transition: all 0.3s;
+    font-family: 'Comic Sans MS', cursive;
+    box-shadow: 0 4px 15px rgba(255, 105, 180, 0.3);
+}
+
+.restart-button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 105, 180, 0.4);
 }
 
 .congratulations {
@@ -129,42 +233,22 @@ h1 {
     transform: translate(-50%, -50%);
     background: rgba(255, 255, 255, 0.95);
     padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    border-radius: 25px;
+    box-shadow: 0 0 30px rgba(255, 105, 180, 0.5);
     z-index: 1000;
     text-align: center;
     display: none;
+    border: 3px solid #ff69b4;
 }
 
 @keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-20px); }
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
 }
 
-.mood-selector {
-    margin: 1rem 0;
-    padding: 0.5rem;
-    border-radius: 10px;
-    border: 2px solid #ff4d6d;
-    background: white;
-    color: #ff4d6d;
-    cursor: pointer;
-}
-
-.restart-button {
-    padding: 0.8rem 1.5rem;
-    background: #ff4d6d;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    cursor: pointer;
-    font-size: 1rem;
-    margin-top: 1rem;
-    transition: transform 0.3s;
-}
-
-.restart-button:hover {
-    transform: scale(1.05);
+@keyframes heartBg {
+    0% { background-position: 0 0; }
+    100% { background-position: 40px 40px; }
 }
 
 .instruction {
@@ -173,36 +257,37 @@ h1 {
     align-items: center;
     gap: 10px;
     font-size: 1.2rem;
-    color: #ff4d6d;
-    animation: bounce 1s infinite;
+    color: #ff1493;
+    animation: bounce 1.5s infinite;
     margin-bottom: 1rem;
+    font-family: 'Comic Sans MS', cursive;
 }
 
+.instruction::before,
 .instruction::after {
-    content: "👆";
-    font-size: 2rem;
-    transform: rotate(45deg);
+    content: "💝";
+    font-size: 1.5rem;
 }
 
 @keyframes bounce {
-    0%, 100% {
-        transform: translateY(0);
-    }
-    50% {
-        transform: translateY(-10px);
-    }
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px) rotate(5deg); }
 }
 
 @media (max-width: 600px) {
     h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
     
     .flower {
-        font-size: 4rem;
+        font-size: 3.5rem;
     }
     
     .heart-target {
-        font-size: 3rem;
+        font-size: 2.5rem;
+    }
+    
+    .container {
+        padding: 1rem;
     }
 }
