@@ -1,0 +1,17 @@
+#valentine-timer {
+    text-align: center;
+    margin: 10px 0;
+    padding: 8px;
+    background-color: rgba(255, 192, 203, 0.2);
+    border-radius: 5px;
+    font-size: 1.1em;
+    color: #ff1493;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
