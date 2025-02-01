@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Happy Valentine's Day! 💝</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,213 +14,298 @@
 
         body {
             min-height: 100vh;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Playfair Display', serif;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(
-                rgba(255, 192, 203, 0.7),
-                rgba(255, 182, 193, 0.7)
-            );
+            background: #fdf2f4;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        .card-container {
             position: relative;
-            overflow: hidden;
-        }
-
-        /* Background Decorations */
-        .background-decoration {
-            position: fixed;
-            top: 0;
-            left: 0;
             width: 100%;
-            height: 100%;
-            z-index: -1;
-            background: 
-                url("data:image/svg+xml,%3Csvg width='52' height='26' viewBox='0 0 52 26' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ff69b4' fill-opacity='0.1'%3E%3Cpath d='M10 10c0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6h2c0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4 3.314 0 6 2.686 6 6 0 2.21 1.79 4 4 4v2c-3.314 0-6-2.686-6-6 0-2.21-1.79-4-4-4-3.314 0-6-2.686-6-6zm25.464-1.95l8.486 8.486-1.414 1.414-8.486-8.486 1.414-1.414z' /%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-        }
-
-        .rose-border {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-            z-index: 1;
-            border: 25px solid transparent;
-            border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='75' height='75' viewBox='0 0 75 75'%3E%3Cpath fill='%23ff69b4' d='M37.5 0c4.1 0 7.5 3.4 7.5 7.5s-3.4 7.5-7.5 7.5S30 11.6 30 7.5 33.4 0 37.5 0zm0 60c4.1 0 7.5 3.4 7.5 7.5S41.6 75 37.5 75 30 71.6 30 67.5s3.4-7.5 7.5-7.5zm-30-30c4.1 0 7.5 3.4 7.5 7.5S11.6 45 7.5 45 0 41.6 0 37.5 3.4 30 7.5 30zm60 0c4.1 0 7.5 3.4 7.5 7.5S71.6 45 67.5 45 60 41.6 60 37.5s3.4-7.5 7.5-7.5z'/%3E%3C/svg%3E") 30 round;
-        }
-
-        .container {
-            position: relative;
-            text-align: center;
-            padding: 2rem;
-            z-index: 2;
+            max-width: 800px;
+            margin: 2rem auto;
+            perspective: 1000px;
         }
 
         .valentine-card {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 3rem;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(255, 182, 193, 0.3),
-                        0 0 60px rgba(255, 105, 180, 0.2);
-            max-width: 600px;
             position: relative;
-            animation: float 3s ease-in-out infinite;
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255, 192, 203, 0.3);
+            width: 100%;
+            min-height: 600px;
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 
+                0 20px 40px rgba(255, 192, 203, 0.2),
+                0 0 100px rgba(255, 192, 203, 0.1);
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .heart-decoration {
-            position: absolute;
-            font-size: 2rem;
-            animation: pulse 1.5s ease-in-out infinite;
+        @media (max-width: 768px) {
+            .valentine-card {
+                padding: 1.5rem;
+                min-height: 500px;
+            }
         }
 
-        .heart-1 { top: 10px; left: 10px; animation-delay: 0s; }
-        .heart-2 { top: 10px; right: 10px; animation-delay: 0.5s; }
-        .heart-3 { bottom: 10px; left: 10px; animation-delay: 1s; }
-        .heart-4 { bottom: 10px; right: 10px; animation-delay: 1.5s; }
+        .card-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            position: relative;
+        }
 
         h1 {
-            color: #ff1493;
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            animation: fadeInDown 1s ease-out;
-            text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
-            font-family: 'Georgia', serif;
-        }
-
-        p {
-            color: #ff69b4;
-            font-size: 1.3rem;
-            line-height: 1.6;
+            font-size: clamp(2rem, 5vw, 3rem);
+            color: #ff6b95;
             margin-bottom: 1rem;
-            animation: fadeInUp 1s ease-out 0.5s both;
-            text-shadow: 1px 1px 2px rgba(255, 105, 180, 0.2);
+            font-weight: 700;
+            text-shadow: 2px 2px 4px rgba(255, 107, 149, 0.1);
         }
 
-        /* Decorative flowers */
-        .flower {
-            position: absolute;
-            font-size: 2rem;
-            opacity: 0.8;
-            animation: sway 3s ease-in-out infinite;
+        .message {
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            color: #666;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            text-align: center;
         }
 
-        .flower:nth-child(1) { top: -20px; left: 10%; animation-delay: 0s; }
-        .flower:nth-child(2) { top: 20%; right: -20px; animation-delay: 0.5s; }
-        .flower:nth-child(3) { bottom: -20px; right: 15%; animation-delay: 1s; }
-        .flower:nth-child(4) { bottom: 30%; left: -20px; animation-delay: 1.5s; }
-
-        @keyframes sway {
-            0%, 100% { transform: rotate(-5deg); }
-            50% { transform: rotate(5deg); }
+        /* Vinyl Player Styles */
+        .vinyl-player {
+            width: 200px;
+            height: 200px;
+            margin: 2rem auto;
+            position: relative;
+            perspective: 1000px;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.2); opacity: 1; }
-        }
-
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Glitter effect */
-        .glitter {
+        .vinyl-disc {
             position: absolute;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            background-image: 
-                radial-gradient(circle at 50% 50%, white 0%, transparent 10%),
-                radial-gradient(circle at 80% 20%, white 0%, transparent 10%);
-            opacity: 0.3;
-            animation: sparkle 4s ease-in-out infinite;
+            border-radius: 50%;
+            background: repeating-radial-gradient(
+                circle at 50% 50%,
+                #000,
+                #000 5px,
+                #333 6px,
+                #333 10px
+            );
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            transform-style: preserve-3d;
+            transition: transform 0.5s;
         }
 
-        @keyframes sparkle {
-            0%, 100% { opacity: 0.3; }
-            50% { opacity: 0.6; }
-        }
-
-        /* Floating elements */
-        .floating-elements {
-            position: fixed;
+        .vinyl-disc::before {
+            content: '';
+            position: absolute;
             width: 100%;
             height: 100%;
-            pointer-events: none;
-            z-index: 1;
+            border-radius: 50%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
         }
 
-        .floating-element {
+        .vinyl-disc.playing {
+            animation: spinVinyl 2s linear infinite;
+        }
+
+        .vinyl-center {
             position: absolute;
-            animation: float-around 20s linear infinite;
-            opacity: 0.6;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 40px;
+            height: 40px;
+            background: #ff69b4;
+            border-radius: 50%;
+            border: 8px solid #fff;
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
         }
 
-        @keyframes float-around {
+        @keyframes spinVinyl {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .love-button {
+            background: linear-gradient(45deg, #ff6b95, #ff8fab);
+            border: none;
+            padding: 1rem 2rem;
+            color: white;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 1rem;
+            font-family: inherit;
+            box-shadow: 0 5px 15px rgba(255, 107, 149, 0.3);
+            outline: none;
+        }
+
+        .love-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 149, 0.4);
+        }
+
+        .love-button:active {
+            transform: translateY(-1px);
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .message-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease, opacity 0.6s ease;
+            font-style: italic;
+            text-align: center;
+            color: #ff6b95;
+            opacity: 0;
+            margin: 2rem 0;
+        }
+
+        .message-content.visible {
+            max-height: 500px;
+            opacity: 1;
+        }
+
+        .heart {
+            position: absolute;
+            font-size: 20px;
+            pointer-events: none;
+            animation: heartFloat 4s ease-in infinite;
+            opacity: 0;
+        }
+
+        @keyframes heartFloat {
             0% {
-                transform: translate(0, 0) rotate(0deg);
+                transform: translateY(100vh) scale(0);
                 opacity: 0;
             }
-            10% { opacity: 0.6; }
-            90% { opacity: 0.6; }
+            50% {
+                opacity: 1;
+            }
             100% {
-                transform: translate(100vw, -100vh) rotate(360deg);
+                transform: translateY(-100px) scale(1);
                 opacity: 0;
             }
         }
+
+        .decoration {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid rgba(255, 107, 149, 0.3);
+            border-radius: 50%;
+        }
+
+        .decoration:nth-child(1) { top: 20px; left: 20px; }
+        .decoration:nth-child(2) { top: 20px; right: 20px; }
+        .decoration:nth-child(3) { bottom: 20px; left: 20px; }
+        .decoration:nth-child(4) { bottom: 20px; right: 20px; }
+
+        
     </style>
 </head>
 <body>
-    <div class="background-decoration"></div>
-    <div class="rose-border"></div>
-    
-    <div class="floating-elements">
-        <div class="floating-element" style="top: 20%; left: -10%;">🌹</div>
-        <div class="floating-element" style="top: 40%; left: -5%;">💝</div>
-        <div class="floating-element" style="top: 60%; left: -15%;">🌸</div>
-        <div class="floating-element" style="top: 80%; left: -8%;">💖</div>
-    </div>
-
-    <div class="container">
+    <div class="card-container">
         <div class="valentine-card">
-            <div class="glitter"></div>
-            <div class="heart-decoration heart-1">❤️</div>
-            <div class="heart-decoration heart-2">💖</div>
-            <div class="heart-decoration heart-3">💝</div>
-            <div class="heart-decoration heart-4">💗</div>
+            <div class="decoration"></div>
+            <div class="decoration"></div>
+            <div class="decoration"></div>
+            <div class="decoration"></div>
             
-            <div class="flower">🌹</div>
-            <div class="flower">🌸</div>
-            <div class="flower">🌺</div>
-            <div class="flower">🌷</div>
+            <div class="card-header">
+                <h1>Happy Valentine's Day Blyy! 🌹</h1>
+            </div>
 
-            <h1>Happy Valentine's Day Blyy! 🌹</h1>
-            <p>Enjoy your day with your loved ones! 💕</p>
+            <div class="message">
+                Wishing you a day filled with love, joy, and beautiful moments! ✨
+            </div>
+
+            <div class="vinyl-player">
+                <div class="vinyl-disc">
+                    <div class="vinyl-center"></div>
+                </div>
+            </div>
+
+            <div class="message-content">
+                <p>Dear Blyy,</p>
+                <br>
+                <p>On this special day, I want to remind you how much you mean to me. Your smile brightens my day, and your love fills my heart with joy.</p>
+                <br>
+                <p>Happy Valentine's Day!</p>
+                <br>
+                <p>With all my love,<br>❤️</p>
+            </div>
+
+            <div class="controls">
+                <button class="love-button" onclick="toggleMusic()">Play Music ♪</button>
+                <button class="love-button" onclick="toggleMessage()">Read Message 💌</button>
+            </div>
         </div>
     </div>
+
+    <script>
+        // Audio handling
+        const audio = new Audio();
+        audio.src = "resources/Vietsub  love. - wave to earth  Lyrics Video.mp3";
+        const vinylDisc = document.querySelector('.vinyl-disc');
+        let isPlaying = false;
+
+        function toggleMusic() {
+            if (!isPlaying) {
+                audio.play().catch(error => {
+                    console.log("Audio play failed:", error);
+                });
+                isPlaying = true;
+                vinylDisc.classList.add('playing');
+            } else {
+                audio.pause();
+                isPlaying = false;
+                vinylDisc.classList.remove('playing');
+            }
+        }
+
+        // Message toggle
+        function toggleMessage() {
+            const messageContent = document.querySelector('.message-content');
+            messageContent.classList.toggle('visible');
+        }
+
+        // Floating hearts
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 2 + 3 + 's';
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        // Create hearts periodically
+        setInterval(createHeart, 300);
+
+        // Handle audio ended event
+        audio.addEventListener('ended', () => {
+            isPlaying = false;
+            vinylDisc.classList.remove('playing');
+        });
+    </script>
 </body>
 </html>
