@@ -18,15 +18,164 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            background: #fdf2f4;
+            background: linear-gradient(135deg, #fdf2f4 0%, #ffe6ea 100%);
             overflow-x: hidden;
             padding: 20px;
+            position: relative;
+        }
+
+        /* New background hearts */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 50% 50%, rgba(255, 192, 203, 0.2) 0%, transparent 60%),
+                url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 32.6c-1.3-1.2-2.5-2.3-3.7-3.4-4.6-4.1-8.5-7.6-11.1-11.3-1.4-2-2.5-4-2.5-6.1 0-4.1 3.3-7.4 7.4-7.4 2.5 0 4.9 1.2 6.3 3.1l3.6 4.6 3.6-4.6c1.4-1.9 3.8-3.1 6.3-3.1 4.1 0 7.4 3.3 7.4 7.4 0 2.1-1.1 4.1-2.5 6.1-2.6 3.7-6.5 7.2-11.1 11.3-1.2 1.1-2.4 2.2-3.7 3.4z' fill='rgba(255,182,193,0.2)'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: -1;
+            animation: backgroundFloat 20s linear infinite;
+        }
+
+        @keyframes backgroundFloat {
+            0% { background-position: 0 0; }
+            100% { background-position: 100px 100px; }
         }
 
         .card-container {
             position: relative;
             width: 100%;
-            max-width: 800px;
+            max-width: 900px;
+            margin: 2rem auto;
+            perspective: 1000px;
+        }
+
+        /* Enhanced card styling */
+        .valentine-card {
+            position: relative;
+            width: 100%;
+            background: white;
+            border-radius: 30px;
+            padding: 3rem;
+            box-shadow: 
+                0 20px 40px rgba(255, 192, 203, 0.2),
+                0 0 100px rgba(255, 192, 203, 0.1),
+                0 5px 15px rgba(255, 107, 149, 0.2);
+            transform-style: preserve-3d;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid rgba(255, 182, 193, 0.3);
+            animation: cardFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes cardFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* New floating rose petals */
+        .petal {
+            position: absolute;
+            pointer-events: none;
+            width: 15px;
+            height: 15px;
+            background: #ffb6c1;
+            border-radius: 150% 0 150% 0;
+            animation: petalFall 10s linear infinite;
+        }
+
+        @keyframes petalFall {
+            0% {
+                transform: translateY(-100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% {
+                transform: translateY(100vh) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Enhanced photo gallery */
+        .photo-container {
+            position: relative;
+            padding-bottom: 100%;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(255, 107, 149, 0.1);
+            transition: all 0.3s ease;
+            border: 3px solid rgba(255, 182, 193, 0.3);
+        }
+
+        .photo-container:hover {
+            transform: scale(1.05) rotate(2deg);
+            border-color: rgba(255, 107, 149, 0.6);
+            box-shadow: 0 12px 24px rgba(255, 107, 149, 0.2);
+        }
+
+        /* Enhanced buttons */
+        .love-button {
+            background: linear-gradient(45deg, #ff6b95, #ff8fab);
+            border: none;
+            padding: 1rem 2rem;
+            color: white;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 1rem;
+            font-family: inherit;
+            box-shadow: 0 5px 15px rgba(255, 107, 149, 0.3);
+            outline: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .love-button::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, transparent 60%);
+            transform: scale(0);
+            transition: transform 0.5s ease-out;
+        }
+
+        .love-button:hover::before {
+            transform: scale(1);
+        }
+
+        /* Enhanced message content */
+        .message-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.6s ease;
+            font-style: italic;
+            text-align: center;
+            color: #ff6b95;
+            opacity: 0;
+            margin: 2rem 0;
+            padding: 2rem;
+            border-radius: 15px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,192,203,0.1));
+            box-shadow: inset 0 0 20px rgba(255,107,149,0.1);
+        }
+
+        .message-content.visible {
+            max-height: 500px;
+            opacity: 1;
+            border: 2px solid rgba(255,182,193,0.3);
+        }
+
+        .card-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
             margin: 2rem auto;
             perspective: 1000px;
         }
@@ -34,7 +183,6 @@
         .valentine-card {
             position: relative;
             width: 100%;
-            min-height: 600px;
             background: white;
             border-radius: 30px;
             padding: 3rem;
@@ -43,13 +191,6 @@
                 0 0 100px rgba(255, 192, 203, 0.1);
             transform-style: preserve-3d;
             transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        @media (max-width: 768px) {
-            .valentine-card {
-                padding: 1.5rem;
-                min-height: 500px;
-            }
         }
 
         .card-header {
@@ -132,6 +273,43 @@
             100% { transform: rotate(360deg); }
         }
 
+        /* Photo Gallery Styles */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 2rem 0;
+        }
+
+        .photo-container {
+            position: relative;
+            padding-bottom: 100%;
+            overflow: hidden;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(255, 107, 149, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .photo-container:hover {
+            transform: scale(1.05);
+        }
+
+        .photo-container img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
         .love-button {
             background: linear-gradient(45deg, #ff6b95, #ff8fab);
             border: none;
@@ -150,18 +328,6 @@
         .love-button:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(255, 107, 149, 0.4);
-        }
-
-        .love-button:active {
-            transform: translateY(-1px);
-        }
-
-        .controls {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 2rem;
-            flex-wrap: wrap;
         }
 
         .message-content {
@@ -215,7 +381,15 @@
         .decoration:nth-child(3) { bottom: 20px; left: 20px; }
         .decoration:nth-child(4) { bottom: 20px; right: 20px; }
 
-        
+        @media (max-width: 768px) {
+            .valentine-card {
+                padding: 1.5rem;
+            }
+            .photo-gallery {
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 10px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -240,14 +414,35 @@
                 </div>
             </div>
 
+            <div class="photo-gallery">
+                <div class="photo-container">
+                    <img src="resources/Screenshot_20230113_190956_com_instagram_android_edit_60944529871949.jpg" alt="Valentine Memory 4">
+                </div>
+                <div class="photo-container">
+                    <img src="resources/1d225916-3dd2-4639-99f5-b5c5cbcc08cc.jpg" alt="Valentine Memory 1">
+                </div>
+                <div class="photo-container">
+                    <img src="resources/Screenshot_20230114_223625.jpg" alt="Valentine Memory 5">
+                </div>
+                <div class="photo-container">
+                    <img src="resources/25592e0e-9570-4000-87b6-8db5864a9432.jpg" alt="Valentine Memory 2">
+                </div>
+                <div class="photo-container">
+                    <img src="resources/IMG_7088.JPG" alt="Valentine Memory 3">
+                </div>
+                <div class="photo-container">
+                    <img src="resources\6c274569-5799-40ed-82d6-dee94138ed42.jpg" alt="Valentine Memory 5">
+                </div>
+            </div>
+
             <div class="message-content">
                 <p>Dear Blyy,</p>
                 <br>
-                <p>On this special day, I want to remind you how much you mean to me. Your smile brightens my day, and your love fills my heart with joy.</p>
+                <p>On this special day, I want to remind you how much you mean to me. Your smile brightens my day.</p>
                 <br>
                 <p>Happy Valentine's Day!</p>
                 <br>
-                <p>With all my love,<br>❤️</p>
+                <p>Enjoy your day with your love one's<br>❤️</p>
             </div>
 
             <div class="controls">
@@ -283,6 +478,20 @@
             const messageContent = document.querySelector('.message-content');
             messageContent.classList.toggle('visible');
         }
+
+        // Add rose petal animation
+    function createPetal() {
+        const petal = document.createElement('div');
+        petal.className = 'petal';
+        petal.style.left = Math.random() * 100 + 'vw';
+        petal.style.opacity = Math.random() * 0.7 + 0.3;
+        petal.style.transform = `scale(${Math.random() * 0.5 + 0.5})`;
+        document.body.appendChild(petal);
+
+        setTimeout(() => {
+            petal.remove();
+        }, 10000);
+    }
 
         // Floating hearts
         function createHeart() {
